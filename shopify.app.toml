@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "cart-transform-update"
+client_id = "605edae05474449dadabd558c9d2ca88"
+application_url = "https://pets-suse-procedures-device.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products, write_cart_transforms"
+
+[auth]
+redirect_urls = [
+  "https://pets-suse-procedures-device.trycloudflare.com/auth/callback",
+  "https://pets-suse-procedures-device.trycloudflare.com/auth/shopify/callback",
+  "https://pets-suse-procedures-device.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "cart-transform-test-store-stephenie.myshopify.com"

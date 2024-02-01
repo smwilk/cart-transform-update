@@ -1,0 +1,30 @@
+query RunInput {
+  localization {
+    market {
+      handle
+    }
+  }
+  cart {
+    lines {
+      id
+      # Cart line attribute to determine whether the item is a pre-order
+      isPreOrder: attribute(key: "purchased_unit") {
+        value
+      }
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          preorder_price: metafield(
+            namespace: "custom"
+            key: "price_by_meter"
+          ) {
+            value
+          }
+          product {
+            title
+          }
+        }
+      }
+    }
+  }
+}
