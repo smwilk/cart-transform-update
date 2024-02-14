@@ -2,7 +2,7 @@
 
 name = "cart-transform-update"
 client_id = "605edae05474449dadabd558c9d2ca88"
-application_url = "https://pets-suse-procedures-device.trycloudflare.com"
+application_url = "https://having-twist-scale-repeat.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products, write_cart_transforms"
 
 [auth]
 redirect_urls = [
-  "https://pets-suse-procedures-device.trycloudflare.com/auth/callback",
-  "https://pets-suse-procedures-device.trycloudflare.com/auth/shopify/callback",
-  "https://pets-suse-procedures-device.trycloudflare.com/api/auth/callback"
+  "https://having-twist-scale-repeat.trycloudflare.com/auth/callback",
+  "https://having-twist-scale-repeat.trycloudflare.com/auth/shopify/callback",
+  "https://having-twist-scale-repeat.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

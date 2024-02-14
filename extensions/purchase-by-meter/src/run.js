@@ -13,28 +13,25 @@ const NO_CHANGES = {
   operations: [],
 };
 
-console.log("Function successfully ran!")
+console.log("Function successfully ran!");
 
 /**
  * @param {RunInput} input
  * @returns {FunctionRunResult}
  */
 export function run(input) {
-  const operations = input.cart.lines.reduce(
-    (acc, cartLine) => {
-      const metafieldValue = getMetafieldValue(cartLine);
-      const purchasedUnit = getPurchasedUnit(cartLine);
+  const operations = [];
 
-      if (metafieldValue && purchasedUnit) {
-        const updatedPrice = metafieldValue * purchasedUnit;
-        const updateOperation = createUpdateOperation(cartLine.id, updatedPrice);
-        acc.push(updateOperation);
-      }
+  for (const cartLine of input.cart.lines) {
+    const metafieldValue = getMetafieldValue(cartLine);
+    const purchasedUnit = getPurchasedUnit(cartLine);
 
-      return acc;
-    },
-    []
-  );
+    if (metafieldValue && purchasedUnit) {
+      const updatedPrice = metafieldValue * purchasedUnit;
+      const updateOperation = createUpdateOperation(cartLine.id, updatedPrice);
+      operations.push(updateOperation);
+    }
+  }
 
   return { operations };
 }
@@ -46,30 +43,26 @@ function createUpdateOperation(cartLineId, updatedPrice) {
       price: {
         adjustment: {
           fixedPricePerUnit: {
-            amount: updatedPrice.toString()
-          }
-        }
-      }
-    }
+            amount: updatedPrice.toString(),
+          },
+        },
+      },
+    },
   };
 }
 
 function getPurchasedUnit({ isPreOrder }) {
-  if (isPreOrder && isPreOrder.value) {
+  if (isPreOrder?.value) {
     return parseInt(isPreOrder.value);
   }
 
   return null;
 }
 
-
-
 function getMetafieldValue({ merchandise }) {
   if (
-    merchandise &&
-    merchandise.__typename === 'ProductVariant' &&
-    merchandise.preorder_price &&
-    merchandise.preorder_price.value
+    merchandise?.__typename === 'ProductVariant' &&
+    merchandise.preorder_price?.value
   ) {
     return parseInt(merchandise.preorder_price.value);
   }
