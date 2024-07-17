@@ -2,7 +2,7 @@
 
 name = "cart-transform-update"
 client_id = "605edae05474449dadabd558c9d2ca88"
-application_url = "https://having-twist-scale-repeat.trycloudflare.com"
+application_url = "https://vic-tr-greene-watching.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products, write_cart_transforms"
 
 [auth]
 redirect_urls = [
-  "https://having-twist-scale-repeat.trycloudflare.com/auth/callback",
-  "https://having-twist-scale-repeat.trycloudflare.com/auth/shopify/callback",
-  "https://having-twist-scale-repeat.trycloudflare.com/api/auth/callback"
+  "https://vic-tr-greene-watching.trycloudflare.com/auth/callback",
+  "https://vic-tr-greene-watching.trycloudflare.com/auth/shopify/callback",
+  "https://vic-tr-greene-watching.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

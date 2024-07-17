@@ -13,8 +13,6 @@ const NO_CHANGES = {
   operations: [],
 };
 
-console.log("Function successfully ran!");
-
 /**
  * @param {RunInput} input
  * @returns {FunctionRunResult}
@@ -25,8 +23,10 @@ export function run(input) {
   for (const cartLine of input.cart.lines) {
     const metafieldValue = getMetafieldValue(cartLine);
     const purchasedUnit = getPurchasedUnit(cartLine);
+    console.log("reached this point cartline", JSON.stringify(cartLine))
 
     if (metafieldValue && purchasedUnit) {
+      console.log("reached this point 2")
       const updatedPrice = metafieldValue * purchasedUnit;
       const updateOperation = createUpdateOperation(cartLine.id, updatedPrice);
       operations.push(updateOperation);
@@ -37,6 +37,7 @@ export function run(input) {
 }
 
 function createUpdateOperation(cartLineId, updatedPrice) {
+  console.log("reached this point 3")
   return {
     update: {
       cartLineId,
@@ -53,7 +54,7 @@ function createUpdateOperation(cartLineId, updatedPrice) {
 
 function getPurchasedUnit({ isPreOrder }) {
   if (isPreOrder?.value) {
-    return parseInt(isPreOrder.value);
+    return parseFloat(isPreOrder.value);
   }
 
   return null;
@@ -64,7 +65,7 @@ function getMetafieldValue({ merchandise }) {
     merchandise?.__typename === 'ProductVariant' &&
     merchandise.preorder_price?.value
   ) {
-    return parseInt(merchandise.preorder_price.value);
+    return parseFloat(merchandise.preorder_price.value);
   }
 
   return null;

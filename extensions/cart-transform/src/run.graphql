@@ -2,7 +2,14 @@ query RunInput {
   cart {
     lines {
       id
-      # Cart line attribute to determine whether the item is a pre-order
+      cost {
+        amountPerQuantity {
+          amount
+        }
+        totalAmount {
+          amount
+        }
+      }
       isPreOrder: attribute(key: "is_pre_order") {
         value
       }
