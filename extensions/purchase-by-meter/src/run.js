@@ -23,10 +23,8 @@ export function run(input) {
   for (const cartLine of input.cart.lines) {
     const amountPerQuantity = getAmountPerQuantity(cartLine);
     const purchasedUnit = getPurchasedUnit(cartLine);
-    console.log("reached this point cartline", JSON.stringify(cartLine))
 
     if (amountPerQuantity && purchasedUnit) {
-      console.log("reached this point 2")
       const updatedPrice = amountPerQuantity * purchasedUnit;
       const updateOperation = createUpdateOperation(cartLine.id, updatedPrice);
       operations.push(updateOperation);
@@ -37,7 +35,6 @@ export function run(input) {
 }
 
 function createUpdateOperation(cartLineId, updatedPrice) {
-  console.log("reached this point 3")
   return {
     update: {
       cartLineId,
