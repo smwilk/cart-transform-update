@@ -21,13 +21,13 @@ export function run(input) {
   const operations = [];
 
   for (const cartLine of input.cart.lines) {
-    const metafieldValue = getMetafieldValue(cartLine);
+    const amountPerQuantity = getAmountPerQuantity(cartLine);
     const purchasedUnit = getPurchasedUnit(cartLine);
     console.log("reached this point cartline", JSON.stringify(cartLine))
 
-    if (metafieldValue && purchasedUnit) {
+    if (amountPerQuantity && purchasedUnit) {
       console.log("reached this point 2")
-      const updatedPrice = metafieldValue * purchasedUnit;
+      const updatedPrice = amountPerQuantity * purchasedUnit;
       const updateOperation = createUpdateOperation(cartLine.id, updatedPrice);
       operations.push(updateOperation);
     }
@@ -60,12 +60,9 @@ function getPurchasedUnit({ isPreOrder }) {
   return null;
 }
 
-function getMetafieldValue({ merchandise }) {
-  if (
-    merchandise?.__typename === 'ProductVariant' &&
-    merchandise.preorder_price?.value
-  ) {
-    return parseFloat(merchandise.preorder_price.value);
+function getAmountPerQuantity({ cost }) {
+  if (cost?.amountPerQuantity?.amount) {
+    return parseFloat(cost.amountPerQuantity.amount);
   }
 
   return null;
